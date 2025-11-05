@@ -5,6 +5,6 @@ docker-login-build-push:
 	echo $(GH_USERNAME)
 	echo $(VAR_ONE)
 	echo $(TAG)
-	docker login ghcr.io -u $(GH_USERNAME) -p $(GH_PAT_SECRET)
+	echo "${GH_PAT_SECRET}" | docker login ghcr.io -u "${GH_USERNAME}" --password-stdin
 	docker build . -t $(TAG) -f ./Dockerfile
 	docker push $(TAG)
