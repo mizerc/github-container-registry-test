@@ -11,7 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Login, Build and Push
+        env:
+          GH_USERNAME: ${{ github.actor }}
+          GH_PAT_SECRET: ${{ secrets.GH_PAT }}
+          VAR_ONE: ${{ vars.VAR_ONE }}
         run: make docker-login-build-push
+
 
       # - name: Checkout repository
       #   uses: actions/checkout@v3
